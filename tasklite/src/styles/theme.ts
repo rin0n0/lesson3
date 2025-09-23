@@ -1,3 +1,5 @@
+import "@emotion/react";
+
 export const theme = {
   colors: {
     background: "#ffffff",
@@ -6,8 +8,8 @@ export const theme = {
     textMuted: "#757575",
     border: "#e5e5e5",
 
-    accent: "#9b79cf",
-    accentHover: "#674c8c",
+    accent: "#a52c38ff",
+    accentHover: "#cc3b4aff",
 
     error: "#bf616a",
     success: "#4caf91",
