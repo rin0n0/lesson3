@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Global, css } from "@emotion/react";
 
 export const GlobalStyles = () => (
@@ -27,7 +26,6 @@ export const GlobalStyles = () => (
         font-size: inherit;
       }
 
-      /* Статичный акварельный фон */
       body::before {
         content: "";
         position: fixed;
