@@ -3,11 +3,11 @@ import type { Task } from "../entities/task";
 import { TaskItem } from "./task-item";
 
 type TaskListProps = {
-  tasks: Task[];
-  onToggle: (id: string) => void;
-  onRemove: (id: string) => void;
+    tasks: Task[];
+    onToggle: (id: string) => void;
+    onRemove: (id: string) => void;
+    onEdit: (id: string, newTitle: string) => void;
 };
-
 const List = styled.ul`
   margin-top: ${(p) => p.theme.spacing(2)};
   list-style: none;
@@ -23,6 +23,7 @@ export const TaskList = (p: TaskListProps) => {
           task={t}
           onToggle={p.onToggle}
           onRemove={p.onRemove}
+          onEdit={p.onEdit}
         />
       ))}
     </List>

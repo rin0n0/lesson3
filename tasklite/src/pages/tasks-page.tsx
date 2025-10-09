@@ -68,10 +68,20 @@ export const TasksPage = () => {
     setTasks(tasks.filter((t) => t.id !== id));
   };
 
+  const handleEditTask = (id: string, newTitle: string) => {
+    setTasks(
+        tasks.map((t) =>
+            t.id === id ? { ...t, title: newTitle } : t
+        )
+    );
+  };
+
+
   const total = tasks.length;
   const active = tasks.filter((t) => !t.completed).length;
   const completed = tasks.filter((t) => t.completed).length;
 
+  
   return (
     <Wrapper>
       <h1>TaskLite</h1>
@@ -82,6 +92,7 @@ export const TasksPage = () => {
         tasks={searchedTasks}
         onToggle={handleToggleTask}
         onRemove={handleRemoveTask}
+        onEdit={handleEditTask}
       />
       <Counter>
         Всего: {total} | Активных: {active} | Выполненных: {completed}
