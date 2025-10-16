@@ -7,7 +7,7 @@ import { TaskList } from "../components/task-list";
 import { FilterBar } from "../views/filter-bar";
 import { SearchBar } from "../views/search-bar";
 import { useMemo } from "react";
-
+import { TaskModal } from "../components/task-modal"
 
 const Wrapper = styled.div`
   padding: ${(p) => p.theme.spacing(4)};
@@ -68,14 +68,15 @@ export const TasksPage = () => {
     setTasks(tasks.filter((t) => t.id !== id));
   };
 
-  const handleEditTask = (id: string, newTitle: string) => {
+
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const handleEditTask = (id: string, newTitle: string, newDescription: string) => {
     setTasks(
         tasks.map((t) =>
-            t.id === id ? { ...t, title: newTitle } : t
+            t.id === id ? { ...t, title: newTitle, description: newDescription } : t
         )
     );
   };
-
 
   const total = tasks.length;
   const active = tasks.filter((t) => !t.completed).length;
@@ -92,8 +93,16 @@ export const TasksPage = () => {
         tasks={searchedTasks}
         onToggle={handleToggleTask}
         onRemove={handleRemoveTask}
-        onEdit={handleEditTask}
+        onEdit={(task) => setEditingTask(task)}
       />
+      {editingTask && (
+      <TaskModal
+        task={editingTask}
+        onClose={() => setEditingTask(null)}
+        onSave={handleEditTask}
+      />
+      )}
+
       <Counter>
         Всего: {total} | Активных: {active} | Выполненных: {completed}
       </Counter>
